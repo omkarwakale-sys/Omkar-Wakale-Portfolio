@@ -4,48 +4,731 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Omkar Wakale | Portfolio</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <meta name="description" content="Portfolio of Omkar Wakale, an AI/ML graduate with experience in Machine Learning, Deep Learning, Cloud, and Full-Stack development." />
+    <style>
+      :root {
+        --bg: #f7f2ea;
+        --panel: rgba(255,255,255,0.62);
+        --panel-strong: rgba(255,255,255,0.8);
+        --line: rgba(124, 90, 60, 0.18);
+        --text: #1d1b1a;
+        --muted: #5d514a;
+        --accent: #9d6f43;
+        --accent-strong: #7f5637;
+        --accent-soft: rgba(157, 111, 67, 0.12);
+        --shadow: rgba(65, 42, 27, 0.12);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(157, 111, 67, 0.18), transparent 20%),
+          radial-gradient(circle at bottom right, rgba(127, 86, 55, 0.18), transparent 20%),
+          var(--bg);
+      }
+
+      a { color: inherit; }
+      img { max-width: 100%; }
+
+      .container {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(12px);
+        background: rgba(24, 20, 18, 0.64);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 72px;
+      }
+
+      .logo {
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: #f4e7d5;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: rgba(255,255,255,0.86);
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .hero {
+        padding: 110px 0 80px;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1.3fr 0.7fr;
+        gap: 32px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        padding: 8px 16px;
+        border: 1px solid rgba(157,111,67,0.35);
+        background: rgba(157,111,67,0.08);
+        border-radius: 999px;
+        color: var(--accent-strong);
+        font-size: 0.75rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      h1 {
+        font-size: clamp(2.9rem, 7vw, 6rem);
+        line-height: 0.98;
+        letter-spacing: -0.06em;
+        margin: 22px 0 18px;
+        background: linear-gradient(135deg, #d0a572, #a7774e, #6a432e);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .subtitle {
+        margin: 0 0 28px;
+        font-size: 1.08rem;
+        color: var(--muted);
+        max-width: 640px;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 13px 24px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button.primary {
+        background: linear-gradient(135deg, #b9875d, #855a3d);
+        color: white;
+        box-shadow: 0 12px 30px rgba(124, 90, 60, 0.18);
+      }
+
+      .button.secondary {
+        background: rgba(255,255,255,0.35);
+        border: 1px solid var(--line);
+        color: var(--text);
+      }
+
+      .profile-card {
+        background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.42));
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 26px;
+        box-shadow: 0 20px 50px var(--shadow);
+      }
+
+      .profile-badge {
+        display: inline-block;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--accent-strong);
+        background: var(--accent-soft);
+        border: 1px solid rgba(157,111,67,0.2);
+        padding: 8px 12px;
+        border-radius: 999px;
+        margin-bottom: 16px;
+      }
+
+      .mini-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .mini-stat {
+        background: rgba(157,111,67,0.05);
+        border: 1px solid rgba(157,111,67,0.18);
+        border-radius: 14px;
+        text-align: center;
+        padding: 18px 12px;
+      }
+
+      .mini-stat strong {
+        display: block;
+        font-size: 1.5rem;
+        color: var(--accent-strong);
+      }
+
+      section {
+        padding: 30px 0 20px;
+      }
+
+      .section-label {
+        margin: 0 0 14px;
+        color: var(--accent-strong);
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-weight: 700;
+        font-size: 0.72rem;
+      }
+
+      h2 {
+        margin: 0 0 26px;
+        font-size: clamp(2rem, 4vw, 3rem);
+        letter-spacing: -0.05em;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 26px;
+      }
+
+      .card {
+        background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.42));
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 26px 24px;
+        box-shadow: 0 14px 28px rgba(72, 52, 42, 0.05);
+      }
+
+      .card p, .card li {
+        color: var(--muted);
+        line-height: 1.7;
+        font-size: 0.98rem;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 18px;
+      }
+
+      .skill-box {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        padding: 18px 18px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.36);
+        border-radius: 16px;
+      }
+
+      .skill-icon {
+        width: 40px;
+        height: 40px;
+        display: grid;
+        place-items: center;
+        background: rgba(157,111,67,0.08);
+        border-radius: 10px;
+        border: 1px solid rgba(157,111,67,0.2);
+        color: var(--accent-strong);
+        font-size: 1.1rem;
+      }
+
+      .skill-title {
+        display: block;
+        color: var(--accent-strong);
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .exp-item {
+        padding: 24px 20px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.46);
+      }
+
+      .exp-meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+
+      .exp-role {
+        font-size: 1.15rem;
+        font-weight: 800;
+      }
+
+      .exp-company {
+        color: var(--accent-strong);
+        font-weight: 600;
+      }
+
+      .exp-date {
+        color: var(--muted);
+        font-size: 0.8rem;
+        border: 1px solid rgba(157,111,67,0.2);
+        background: rgba(157,111,67,0.06);
+        border-radius: 999px;
+        padding: 6px 12px;
+      }
+
+      .exp-item ul, .card ul {
+        padding-left: 18px;
+        margin: 0;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 18px;
+      }
+
+      .project-card {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        min-height: 100%;
+      }
+
+      .project-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .project-title {
+        font-size: 1.06rem;
+        font-weight: 800;
+        color: var(--text);
+      }
+
+      .project-link {
+        text-decoration: none;
+        font-size: 0.76rem;
+        border: 1px solid rgba(157,111,67,0.2);
+        padding: 7px 10px;
+        border-radius: 10px;
+        color: var(--accent-strong);
+        background: rgba(157,111,67,0.05);
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag {
+        font-size: 0.72rem;
+        padding: 5px 9px;
+        background: rgba(157,111,67,0.06);
+        border: 1px solid rgba(157,111,67,0.18);
+        color: var(--accent-strong);
+        border-radius: 999px;
+      }
+
+      .edu-grid, .cert-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 18px;
+      }
+
+      .mini-title {
+        font-size: 1rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+      }
+
+      .company {
+        color: var(--accent-strong);
+        font-weight: 700;
+      }
+
+      .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 16px;
+      }
+
+      .contact-item {
+        text-decoration: none;
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.45);
+        color: var(--text);
+      }
+
+      footer {
+        padding: 38px 0 70px;
+        color: var(--muted);
+        text-align: center;
+        font-size: 0.84rem;
+      }
+
+      @media (max-width: 840px) {
+        .hero-inner, .grid-2 { grid-template-columns: 1fr; }
+        .nav { padding: 14px 0; }
+        .nav-links { gap: 10px 16px; }
+      }
+
+      @media (max-width: 560px) {
+        .nav { flex-direction: column; align-items: flex-start; min-height: auto; padding: 16px 0; }
+        .nav-links { margin-top: 12px; }
+        .hero { padding-top: 76px; }
+      }
+    </style>
   </head>
   <body>
-    <main class="container">
-      <header class="hero">
-        <p class="eyebrow">AVAILABLE FOR OPPORTUNITIES</p>
-        <h1>Omkar Anil Wakale</h1>
-        <p class="subtitle">B.Tech (AI/ML) Graduate • Machine Learning Developer • Cloud Practitioner</p>
-      </header>
+    <header class="site-header">
+      <div class="container nav">
+        <div class="logo">OW.dev</div>
+        <nav aria-label="Main navigation">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-      <section class="card">
-        <h2>About</h2>
-        <p>
-          I am a B.Tech student specializing in Artificial Intelligence and Machine Learning,
-          with interests in machine learning, deep learning, cloud technologies, and data-driven product development.
-        </p>
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div>
+            <div class="eyebrow">Available for opportunities</div>
+            <h1>Omkar<br />Wakale</h1>
+            <p class="subtitle">B.Tech (AI/ML) Graduate • Machine Learning Developer • Cloud Practitioner • Deep Learning Enthusiast</p>
+            <div class="cta-row">
+              <a class="button primary" href="https://www.linkedin.com/in/omkar-wakale-0b9303286/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a class="button secondary" href="https://github.com/omkarwakale-sys" target="_blank" rel="noreferrer">GitHub</a>
+              <a class="button secondary" href="mailto:omkarwakale@gmail.com">Email Me</a>
+            </div>
+          </div>
+
+          <aside class="profile-card" aria-label="Quick summary">
+            <div class="profile-badge">Profile</div>
+            <div class="mini-title">AI/ML & Cloud Enthusiast</div>
+            <p style="margin:0; color: var(--muted); line-height:1.7;">
+              I build intelligent systems that solve real-world problems and enjoy working across machine learning, data analysis, and modern web products.
+            </p>
+            <div class="mini-grid">
+              <div class="mini-stat"><strong>2</strong><span>Internships</span></div>
+              <div class="mini-stat"><strong>5+</strong><span>Projects</span></div>
+              <div class="mini-stat"><strong>8</strong><span>Certifications</span></div>
+              <div class="mini-stat"><strong>AI/ML</strong><span>Specialization</span></div>
+            </div>
+          </aside>
+        </div>
       </section>
 
-      <section class="card">
-        <h2>Skills</h2>
-        <ul>
-          <li>Python, SQL, C, C++, Java</li>
-          <li>Machine Learning, Deep Learning, Data Analysis</li>
-          <li>HTML, CSS, JavaScript, Streamlit</li>
-          <li>AWS and Azure fundamentals</li>
-        </ul>
+      <section id="about">
+        <div class="container">
+          <div class="section-label">01 // About</div>
+          <h2>Who I Am</h2>
+          <div class="grid-2">
+            <div class="card">
+              <p>
+                Hey! I’m <strong>Omkar</strong> — a <strong>B.Tech (AI/ML) graduate</strong> from D Y Patil International University, Pune. I love building intelligent systems that solve real-world problems and transform data into practical impact.
+              </p>
+              <p>
+                I am an <strong>AWS re/Start Graduate</strong> and <strong>Microsoft Certified: Azure AI Fundamentals (AI-900)</strong> holder with hands-on experience across Machine Learning, Deep Learning, Data Analysis, Cloud Technologies, and Web Development.
+              </p>
+              <p>
+                Beyond technology, I am also a passionate <strong>photographer</strong> with a keen eye for portraits, travel storytelling, landscapes, and cinematic visual composition. Outside code, you’ll find me skateboarding, travelling, and capturing moments through the lens.
+              </p>
+            </div>
+            <div class="card">
+              <p><strong>Core strengths:</strong></p>
+              <ul>
+                <li>Machine Learning and Deep Learning model development</li>
+                <li>Data cleaning, analysis, visualization, and EDA</li>
+                <li>Web application development with HTML, CSS, JavaScript, and Streamlit</li>
+                <li>Cloud fundamentals using AWS and Azure</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section class="card">
-        <h2>Projects</h2>
-        <ul>
-          <li>Air Quality Prediction using DNN</li>
-          <li>Zero-Shot Agent Using RL</li>
-          <li>Credit Card Fraud Detection</li>
-        </ul>
+      <section id="skills">
+        <div class="container">
+          <div class="section-label">02 // Skills</div>
+          <h2>Skills & Technologies</h2>
+          <div class="skills-grid">
+            <div class="skill-box">
+              <div class="skill-icon">⌨️</div>
+              <div>
+                <span class="skill-title">Programming Languages</span>
+                <div>Python, SQL, C, C++, Java</div>
+              </div>
+            </div>
+            <div class="skill-box">
+              <div class="skill-icon">🧠</div>
+              <div>
+                <span class="skill-title">Machine Learning & AI</span>
+                <div>Supervised & Unsupervised Learning, Neural Networks, AI workflows</div>
+              </div>
+            </div>
+            <div class="skill-box">
+              <div class="skill-icon">📊</div>
+              <div>
+                <span class="skill-title">Data Analysis & Visualization</span>
+                <div>EDA, Feature Engineering, Pandas, NumPy, Matplotlib, Seaborn</div>
+              </div>
+            </div>
+            <div class="skill-box">
+              <div class="skill-icon">🌐</div>
+              <div>
+                <span class="skill-title">Web Development</span>
+                <div>HTML, CSS, JavaScript, Responsive UI, Streamlit apps</div>
+              </div>
+            </div>
+            <div class="skill-box">
+              <div class="skill-icon">☁️</div>
+              <div>
+                <span class="skill-title">Cloud & Platforms</span>
+                <div>AWS, Azure AI Fundamentals, Jupyter Notebook, Git/GitHub</div>
+              </div>
+            </div>
+            <div class="skill-box">
+              <div class="skill-icon">🗄️</div>
+              <div>
+                <span class="skill-title">Databases</span>
+                <div>MySQL, SQL Database Management, Structured data solutions</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section class="card">
-        <h2>Contact</h2>
-        <p>Email: omkarwakale@gmail.com</p>
-        <p>LinkedIn: omkar-wakale-0b9303286</p>
+      <section id="experience">
+        <div class="container">
+          <div class="section-label">03 // Experience</div>
+          <h2>Work Experience</h2>
+          <div class="timeline">
+            <div class="exp-item">
+              <div class="exp-meta">
+                <div>
+                  <div class="exp-role">Machine Learning Intern</div>
+                  <div class="exp-company">Bitzetta IT Solutions, Pune</div>
+                </div>
+                <div class="exp-date">May 2025 – Aug 2025</div>
+              </div>
+              <p style="margin:0 0 10px; color: var(--muted);">Built and deployed end-to-end ML pipelines focused on environmental data analysis.</p>
+              <ul>
+                <li>Developed <strong>DNN models</strong> for air quality prediction using dropout, batch normalization, and learning rate tuning.</li>
+                <li>Performed extensive <strong>EDA and feature engineering</strong> to identify pollution trends and key variables.</li>
+                <li>Deployed a <strong>Streamlit web app</strong> for real-time predictions and CSV-based analysis.</li>
+              </ul>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-meta">
+                <div>
+                  <div class="exp-role">Web Development Intern</div>
+                  <div class="exp-company">Agarwal Creation Fashions Pvt. Ltd., Pune</div>
+                </div>
+                <div class="exp-date">June 2024 – Aug 2024</div>
+              </div>
+              <p style="margin:0 0 10px; color: var(--muted);">Built responsive, user-focused website features for a fashion business.</p>
+              <ul>
+                <li>Developed responsive web pages using <strong>HTML, CSS, JavaScript, and PHP/MySQL</strong>.</li>
+                <li>Managed database updates and content workflows for smooth content operations.</li>
+                <li>Helped debug and optimize the website for consistent user experience.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="container">
+          <div class="section-label">04 // Projects</div>
+          <h2>Featured Projects</h2>
+          <div class="projects-grid">
+            <article class="card project-card">
+              <div class="project-head">
+                <div class="project-title">🌫️ Air Quality Prediction using DNN</div>
+                <a class="project-link" href="https://github.com/omkarwakale-sys/Air-Quality-Prediction" target="_blank" rel="noreferrer">GitHub ↗</a>
+              </div>
+              <p>End-to-end ML project predicting the Air Quality Index using advanced deep learning architectures and interpretability tools.</p>
+              <ul>
+                <li>Implemented baseline and advanced DNN architectures.</li>
+                <li>Used feature engineering, EDA, and model tuning.</li>
+                <li>Deployed an interactive Streamlit app.</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">PyTorch</span>
+                <span class="tag">Scikit-learn</span>
+                <span class="tag">Streamlit</span>
+              </div>
+            </article>
+
+            <article class="card project-card">
+              <div class="project-head">
+                <div class="project-title">🤖 Zero-Shot Agent Using RL</div>
+                <a class="project-link" href="https://github.com/omkarwakale-sys/Zero-Shot-Using-Rl" target="_blank" rel="noreferrer">GitHub ↗</a>
+              </div>
+              <p>Custom reinforcement learning agent that navigates dynamic maze environments with zero prior knowledge.</p>
+              <ul>
+                <li>Built a custom maze environment using Python and Pygame.</li>
+                <li>Developed data collection and world-model planning logic.</li>
+                <li>Explored RL strategies for navigation and adaptability.</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">PyTorch</span>
+                <span class="tag">NumPy</span>
+                <span class="tag">Pygame</span>
+              </div>
+            </article>
+
+            <article class="card project-card">
+              <div class="project-head">
+                <div class="project-title">💳 Credit Card Fraud Detection</div>
+                <a class="project-link" href="https://github.com/omkarwakale-sys/credit-card-fraud-detection" target="_blank" rel="noreferrer">GitHub ↗</a>
+              </div>
+              <p>Machine learning project designed to detect fraudulent transactions using classification-based detection methods.</p>
+              <ul>
+                <li>Handled dataset preprocessing and class imbalance.</li>
+                <li>Analysed feature importance and model performance.</li>
+                <li>Evaluated accuracy, precision, and recall metrics.</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Jupyter</span>
+              </div>
+            </article>
+
+            <article class="card project-card">
+              <div class="project-head">
+                <div class="project-title">🥛 Milk Management DBMS</div>
+                <a class="project-link" href="https://github.com/omkarwakale-sys/milk-management-dbms" target="_blank" rel="noreferrer">GitHub ↗</a>
+              </div>
+              <p>Database management system project focused on routine milk collection and management operations.</p>
+              <ul>
+                <li>Designed DBMS structures and workflows.</li>
+                <li>Modeled data retrieval and operational processes.</li>
+                <li>Applied practical backend logic and data management patterns.</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Java</span>
+                <span class="tag">DBMS</span>
+                <span class="tag">SQL</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="education">
+        <div class="container">
+          <div class="section-label">05 // Education</div>
+          <h2>Education</h2>
+          <div class="edu-grid">
+            <article class="card">
+              <div class="mini-title">B.Tech — Computer Science & Engineering (AI/ML)</div>
+              <div class="company">D Y Patil International University, Pune</div>
+              <p style="margin: 8px 0 2px; color: var(--muted);">Aug 2022 – June 2026</p>
+              <p style="margin: 10px 0 0; color: var(--muted);">Specialization in Artificial Intelligence & Machine Learning</p>
+              <div class="tag" style="display:inline-block; margin-top:10px;">CGPA: 6.3 / 10</div>
+            </article>
+
+            <article class="card">
+              <div class="mini-title">AWS re/Start Program</div>
+              <div class="company">Amazon Web Services</div>
+              <p style="margin: 8px 0 2px; color: var(--muted);">Sep 2025 – Dec 2025</p>
+              <p style="margin: 10px 0 0; color: var(--muted);">IT Fundamentals, Linux, Python, and Core AWS Services</p>
+              <div class="tag" style="display:inline-block; margin-top:10px;">Graduate ✓</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="certifications">
+        <div class="container">
+          <div class="section-label">06 // Certifications</div>
+          <h2>Certifications</h2>
+          <div class="cert-grid">
+            <div class="card">☁️ AWS re/Start Graduate</div>
+            <div class="card">🔷 Azure AI Fundamentals (AI-900)</div>
+            <div class="card">📊 Data Analytics Job Simulation</div>
+            <div class="card">🐍 Python Programming</div>
+            <div class="card">☕ Core Java</div>
+            <div class="card">⚙️ C Programming</div>
+            <div class="card">📷 Mindspark 22 DSLR Photography</div>
+            <div class="card">🎥 Mindspark 24 DSLR Photography</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="section-label">07 // Contact</div>
+          <h2>Let’s Connect</h2>
+          <div class="card">
+            <p style="margin-top:0; color: var(--muted); max-width:600px;">
+              I’m always open to new opportunities, collaborations, or just a good conversation about tech. Feel free to reach out.
+            </p>
+            <div class="contact-links">
+              <a class="contact-item" href="mailto:omkarwakale@gmail.com">📧 omkarwakale@gmail.com</a>
+              <a class="contact-item" href="tel:+917522944780">📞 +91-7522944780</a>
+              <a class="contact-item" href="https://www.linkedin.com/in/omkar-wakale-0b9303286/" target="_blank" rel="noreferrer">🔗 LinkedIn</a>
+              <a class="contact-item" href="https://github.com/omkarwakale-sys" target="_blank" rel="noreferrer">💻 GitHub</a>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
+
+    <footer>Built with passion · omkarwakale@gmail.com · © 2026</footer>
   </body>
 </html>
